@@ -1,0 +1,20 @@
+#!/bin/sh
+#shell script that acts as typescript command
+
+echo "script started, file is mytypescript (type exit to quit)"
+
+read command
+echo $command > mytypescript
+
+while test "$command" != "exit"
+do
+ $command
+ $command >> mytypescript
+ read command
+ echo $command >> mytypescript
+done
+
+if test "$command" = "exit"
+then
+ echo "script done; file is mytypescript"
+fi

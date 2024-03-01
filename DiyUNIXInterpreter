@@ -1,0 +1,23 @@
+#!/bin/sh
+# mini shell script that interprets unix-like commands
+echo '*******************************************'
+echo "Welcome to the Xinix interpreter"
+echo "Type some Xinix commands at the %%> prompt"
+echo "Type Ctrl-C to exit"
+echo '*******************************************'
+
+echo "%%>"
+read command arg1 arg2 arg3
+while test $command != ^C
+do
+ case $command in
+   list) ls $arg1 $arg2; echo "%%>"; read command arg1 arg2 arg3;;
+   show) cat $arg1 $arg2 $arg3; echo "%%>"; read command arg1 arg2 arg3;;
+   move) mv $arg1 $arg2 $arg3; echo "%%>"; read command arg1 arg2 arg3;;
+   copy) cp $arg1 $arg2 $arg3; echo "%%>"; read command arg1 arg2 arg3;;
+   chd) cd $arg1 $arg2; echo "%%>"; read command arg1 arg2 arg3;;
+   del) rm $arg1 $arg2; echo "%%>"; read command arg1 arg2 arg3;;
+   *) echo "Xinix does not recognize the command" $command;
+      echo "%%>"; read command arg1 arg2 arg3;;
+ esac
+done
